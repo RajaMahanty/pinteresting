@@ -1,3 +1,11 @@
+.postPageContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-direction: column;
+}
+
 .postPage {
   display: flex;
   justify-content: center;

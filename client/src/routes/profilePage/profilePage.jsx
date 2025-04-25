@@ -1,6 +1,8 @@
 import "./profilePage.css";
 import Image from "../../components/image/image";
 import { useState } from "react";
+import Collections from "../../components/collections/collections";
+import Gallery from "../../components/gallery/gallery";
 
 const ProfilePage = () => {
 	const [type, setType] = useState("saved");
@@ -38,6 +40,7 @@ const ProfilePage = () => {
 					Saved
 				</span>
 			</div>
+			{type === "created" ? <Gallery /> : <Collections />}
 		</div>
 	);
 };
