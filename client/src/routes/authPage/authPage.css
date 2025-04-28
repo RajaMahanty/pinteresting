@@ -64,3 +64,11 @@
 .error {
   color: #e50829;
 }
+
+@media (max-width: 768px) {
+  .authContainer {
+    width: 90%;
+    min-width: auto;
+    margin: 0 5%;
+  }
+}

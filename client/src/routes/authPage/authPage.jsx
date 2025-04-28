@@ -37,7 +37,7 @@ const AuthPage = () => {
 							<label htmlFor="email">Email</label>
 							<input
 								type="text"
-								placeholder="email"
+								placeholder="Email"
 								required
 								name="email"
 								id="email"
@@ -47,7 +47,7 @@ const AuthPage = () => {
 							<label htmlFor="password">Password</label>
 							<input
 								type="password"
-								placeholder="password"
+								placeholder="Password"
 								required
 								name="password"
 								id="password"
@@ -65,7 +65,7 @@ const AuthPage = () => {
 							<label htmlFor="email">Email</label>
 							<input
 								type="text"
-								placeholder="email"
+								placeholder="Email"
 								required
 								name="email"
 								id="email"
@@ -75,7 +75,7 @@ const AuthPage = () => {
 							<label htmlFor="password">Password</label>
 							<input
 								type="password"
-								placeholder="password"
+								placeholder="Password"
 								required
 								name="password"
 								id="password"
