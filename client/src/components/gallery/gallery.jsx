@@ -4,27 +4,26 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import "./gallery.css";
 import axios from "axios";
 
-const fetchPins = async ({ pageParam, search }) => {
+const fetchPins = async ({ pageParam, search, userId, boardId }) => {
 	const res = await axios.get(
 		`${import.meta.env.VITE_API_ENDPOINT}/pins?cursor=${pageParam}&search=${
 			search || ""
-		}`
+		}&userId=${userId || ""}&boardId=${boardId || ""}`
 	);
 	return res.data;
 };
 
-const Gallery = ({ search }) => {
+const Gallery = ({ search, userId, boardId }) => {
 	const { data, fetchNextPage, hasNextPage, status } = useInfiniteQuery({
-		queryKey: ["pins", search],
-		queryFn: ({ pageParam = 0 }) => fetchPins({ pageParam, search }),
+		queryKey: ["pins", search, userId],
+		queryFn: ({ pageParam = 0 }) =>
+			fetchPins({ pageParam, search, userId, boardId }),
 		initialPageParam: 0,
 		getNextPageParam: (lastPage, pages) => lastPage.nextCursor,
 	});
 
 	if (status === "pending") return "Loading...";
 	if (status === "error") return "Something went wrong...";
-
-	console.log(data);
 
 	const allPins = data?.pages.flatMap((page) => page.pins) || [];
 

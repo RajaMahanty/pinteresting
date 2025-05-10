@@ -1,7 +1,7 @@
 import "./profilePage.css";
 import Image from "../../components/image/image";
 import { useState } from "react";
-import Collections from "../../components/collections/collections";
+import Boards from "../../components/boards/boards";
 import Gallery from "../../components/gallery/gallery";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
@@ -58,7 +58,11 @@ const ProfilePage = () => {
 					Saved
 				</span>
 			</div>
-			{type === "created" ? <Gallery userId={data._id} /> : <Collections />}
+			{type === "created" ? (
+				<Gallery userId={data._id} />
+			) : (
+				<Boards userId={data._id} />
+			)}
 		</div>
 	);
 };

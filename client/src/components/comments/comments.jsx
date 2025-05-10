@@ -1,99 +1,33 @@
 import "./comments.css";
-import Image from "../image/image";
-import EmojiPicker from "emoji-picker-react";
-import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import apiRequest from "../../utils/apiRequest.js";
+import Comment from "../comments/comment.jsx";
+import CommentForm from "./commentForm.jsx";
 
-const Comments = () => {
-	const [open, setOpen] = useState(false);
+const Comments = ({ id }) => {
+	const { isPending, error, data } = useQuery({
+		queryKey: ["comments", id],
+		queryFn: () => apiRequest.get(`/comments/${id}`).then((res) => res.data),
+	});
+
+	if (isPending) return "Loading...";
+
+	if (error) return "An error has occurred:" + error.message;
+
+	if (!data) return "No comments found!";
 
 	return (
 		<div className="comments">
 			<div className="commentList">
-				<span className="commentCount">5 comments</span>
+				<span className="commentCount">
+					{data.length === 0 ? "No Comments" : data.length + " Comments"}
+				</span>
 				{/* COMMENT */}
-				<div className="comment">
-					<Image path={"/general/noAvatar.png"} alt={""} />
-					<div className="commentContent">
-						<span className="commentUsername"></span>
-						<p className="commentText">
-							Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta,
-							facere.
-						</p>
-						<span className="commentTime">1h</span>
-					</div>
-				</div>
-				{/* COMMENT */}
-				<div className="comment">
-					<Image path={"/general/noAvatar.png"} alt={""} />
-					<div className="commentContent">
-						<span className="commentUsername"></span>
-						<p className="commentText">
-							Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta,
-							facere.
-						</p>
-						<span className="commentTime">1h</span>
-					</div>
-				</div>
-				{/* COMMENT */}
-				<div className="comment">
-					<Image path={"/general/noAvatar.png"} alt={""} />
-					<div className="commentContent">
-						<span className="commentUsername"></span>
-						<p className="commentText">
-							Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta,
-							facere.
-						</p>
-						<span className="commentTime">1h</span>
-					</div>
-				</div>
-				{/* COMMENT */}
-				<div className="comment">
-					<Image path={"/general/noAvatar.png"} alt={""} />
-					<div className="commentContent">
-						<span className="commentUsername"></span>
-						<p className="commentText">
-							Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta,
-							facere.
-						</p>
-						<span className="commentTime">1h</span>
-					</div>
-				</div>
-				{/* COMMENT */}
-				<div className="comment">
-					<Image path={"/general/noAvatar.png"} alt={""} />
-					<div className="commentContent">
-						<span className="commentUsername"></span>
-						<p className="commentText">
-							Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta,
-							facere.
-						</p>
-						<span className="commentTime">1h</span>
-					</div>
-				</div>
-				{/* COMMENT */}
-				<div className="comment">
-					<Image path={"/general/noAvatar.png"} alt={""} />
-					<div className="commentContent">
-						<span className="commentUsername"></span>
-						<p className="commentText">
-							Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dicta,
-							facere.
-						</p>
-						<span className="commentTime">1h</span>
-					</div>
-				</div>
+				{data.map((comment) => (
+					<Comment key={comment._id} comment={comment} />
+				))}
 			</div>
-			<form className="commentForm">
-				<input type="text" placeholder="Add a comment" />
-				<div className="emoji">
-					<div onClick={() => setOpen(!open)}>😀</div>
-					{open && (
-						<div className="emojiPicker">
-							<EmojiPicker />
-						</div>
-					)}
-				</div>
-			</form>
+			<CommentForm />
 		</div>
 	);
 };
