@@ -1,5 +1,6 @@
 import express from "express";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 // routes imports
 import userRouter from "./routes/user.route.js";
@@ -14,6 +15,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
+app.use(cookieParser());
 
 app.use("/users", userRouter);
 app.use("/pins", pinRouter);

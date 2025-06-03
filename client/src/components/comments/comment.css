@@ -1,0 +1,50 @@
+.comment {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.comment img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.commentContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.commentUsername {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.commentText {
+  margin: 0;
+  color: #444;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.commentTime {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.deleteComment {
+  color: #ff4d4f;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: color 0.2s ease;
+}
+
+.deleteComment:hover {
+  color: #ff7875;
+}
