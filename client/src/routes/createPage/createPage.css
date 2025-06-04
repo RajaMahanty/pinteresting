@@ -66,6 +66,31 @@
   color: gray;
 }
 
+.preview {
+  width: 375px;
+  position: relative;
+}
+
+.preview img {
+  border-radius: 32px;
+  width: 100%;
+}
+
+.editIcon {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: white;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
 .createForm {
   display: flex;
   flex-direction: column;
